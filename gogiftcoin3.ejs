@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .form-group-outer {
+            padding: 40px 20px;
+            border: solid 1px #ccc;
+            border-radius: 15px;
+
+
+        }
+
+        #popup{
+    text-align: center;
+    color:black;
+     font-weight: bold;
+
+}
+
+        .payment h2 {
+            color: #000;
+            padding: 10px;
+            text-align: center;
+            margin: 0px;
+            font-family: 'Lobster', cursive;
+            font-weight: normal;
+            font-size: 70px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            width: 130px;
+            float: left;
+        }
+
+        .form-group input[type="text"],
+        .form-group select {
+            padding: 7px;
+            border: solid 1px #dfdfdf;
+            width: 72%;
+        }
+
+        .form-group select {
+            width: 72%;
+        }
+
+        .main-container {
+            max-width: 1170px;
+            margin: auto;
+
+        }
+
+        .box new-box {
+            width: 100%;
+        }
+
+        .payment button {
+            width: 200px;
+            padding: 10px;
+            margin: auto;
+            display: block;
+            background: #19a2fe;
+            border: 0px;
+            margin-top: 30px;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .payment select option {
+            padding: 10px;
+            text-align: center;
+        }
+
+
+
+        .box {
+            width: 100%;
+            margin: auto;
+            float: none;
+            margin-top: 30px;
+        }
+
+        .hint {
+            font-size: 12px;
+            margin-left: 130px;
+            width: 100%;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .new-box {
+            display: none;
+        }
+        .ptag{
+            float: left;
+    width: 100%;
+    text-align: center;
+    margin-top: 43px;
+    font-family: 'Lobster', cursive;
+    font-size: 2.1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="main-container payment">
+                <h2>GiftGoNow Payment</h2>
+                <!-- <p> <%= message %>..</p> -->
+                <form class="box" method="POST" action="here">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group-outer">
+                                <div class="form-group">
+                                    <label>Account:</label>
+                                    <input type="text" placeholder="Enter Amount in PHP" id="amount" name="amount">
+                                    <span class="hint">(minimum 22 PHP for Cebuana and 50 PHP for BDI/BPI)</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Payment Option:</label>
+                                    <select id="smyselect">
+                            <option value=''>--Select--</option>
+                            <option value='BDO'>BDO</option>
+                            <option value='BPI'>BPI</option>
+                            <option value='CEBUANA'>CEBUANA</option>
+                            <option value='PALAWAN'>PALAWAN</option>
+                        </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group-outer" id='form1'>
+                                <div class="outer-div">
+                                    <div class="payemnet-tab1" style="display:block;">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="card_number">Outlet Name:</label>
+                                                <input type="text" name="outlet_bank" class="form-control" id="outlet_bank" readonly="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12" id="div_account_holder_name">
+                                            <label for="total_amount">Account Holder Name:</label>
+                                            <input type="text" name="account_holder_name" id="account_holder_name" class="form-control renew_amount" value="Kara Therese Limchiu">
+                                            <span id="err_account_holder_name" class="error"></span>
+                                        </div>
+                                      
+                                        <div class="form-group col-md-12" id="div_name">
+                                            <label for="total_amount">Full Name:</label>
+                                            <input type="text" name="name" id="name" class="form-control renew_amount" value="Diana Olimba">
+                                            <span id="err_name" class="error"></span>
+                                        </div>
+                                        <div class="col-md-12" id="div_phone">
+                                            <div class="form-group">
+                                                <label for="card_number">Phone Number:</label>
+                                                <input type="text" name="phone" class="form-control" id="phone" value="09293084871">
+                                                <span id="err_phone" class="error"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" id="div_address">
+                                            <div class="form-group">
+                                                <label for="expiry_date">Full Address/ID:</label>
+                                                <input type="text" name="address" class="form-control" id="address" value="Quebiauan city of San Fernando Pampanga">
+                                                <span id="err_address" class="error"></span>
+                                            </div>
+                                        </div>
+                               
+                                        <div class="col-md-12" id="div_account_number">
+                                            <div class="form-group">
+                                                <label for="card_number">Bank Account Number:</label>
+                                                <input type="text" name="account_number" class="form-control" id="account_number">
+                                                <span id="err_account_number" class="error"></span>
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" name="currency" class="form-control" id="currency" value="PHP">
+                                        <input type="hidden" name="pay_with_wallet" class="form-control" id="pay_with_wallet" value="PBTC">
+                                       
+
+                                    </div>
+                                  
+                                    <button type="submit">Pay</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <p class="ptag"> <%= message %>.</p>
+</body>
+
+
+</html>
+
+
+<script>
+    $(document).ready(function () {
+       
+        $('#smyselect').change(function () {
+            $this = $(this);
+            $value = $this.val();
+            console.log($value)
+            $('.box').css({
+                'float': 'left'
+            });
+            console.log($value);
+            switch ($value) {
+                case 'BDO':
+                    $(".new-box#form1").css({
+                        'float': 'right',
+                        'display': 'block'
+                    });
+                    $('#outlet_bank').val('bdo');
+                    $('#account_number').val('006348010488');
+                    $("#div_name").hide();
+                    $("#div_phone").hide();
+                    $("#div_address").hide();
+                    $("#div_account_holder_name").show();
+                    $("#div_account_number").show();
+                    break;
+
+                case 'BPI':
+                    $(".new-box#form1").css({
+                        'float': 'right',
+                        'display': 'block'
+                    });
+                    $('#outlet_bank').val('bpi');
+                    $('#account_number').val('4029157931');
+                    $("#div_name").hide();
+                    $("#div_phone").hide();
+                    $("#div_address").hide();
+                    $("#div_account_holder_name").show();
+                    $("#div_account_number").show();
+                    break;
+                case 'PALAWAN':
+                    $(".new-box#form1").css({
+                        'float': 'right',
+                        'display': 'block'
+                    });
+                    $('#outlet_bank').val('palawan_pawnshop');
+                    $("#div_account_holder_name").hide();
+                    $("#div_name").show();
+                    $("#div_phone").show();
+                    $("#div_address").show();
+                    $("#div_account_number").hide();
+
+                    break;
+                case 'CEBUANA':
+                    $(".new-box#form1").css({
+                        'float': 'right',
+                        'display': 'block'
+                    });
+                    $('#outlet_bank').val('cebuana_lhuillier_perapadala');
+                    $("#div_account_holder_name").hide();
+                    $("#div_name").show();
+                    $("#div_phone").show();
+                    $("#div_address").show();
+                    $("#div_account_number").hide();
+                    break
+            }
+
+        });
+    });
+</script>
